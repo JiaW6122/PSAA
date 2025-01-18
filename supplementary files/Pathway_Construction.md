@@ -10,4 +10,4 @@ Complete list of genes and modules of the MHC class I and MHC class II antigen p
 
 <img width="677" alt="image" src="https://github.com/user-attachments/assets/7d480220-f875-4284-b9a8-aa5dc5e33954" />
 
-The reconstructed MHC-I and -II pathways are given in Supplemental Tables [S1](https://github.com/JiaW6122/PSAA/blob/main/supplementary%20files/Supplementary%20Table%20S1.xlsx) and S2.
+The reconstructed MHC-I and -II pathways are given in Supplemental Tables [S1](https://github.com/JiaW6122/PSAA/blob/main/supplementary%20files/Supplementary%20Table%20S1.xlsx) and [S2](https://github.com/JiaW6122/PSAA/blob/main/supplementary%20files/Supplementary%20Table%20S2.xlsx).
