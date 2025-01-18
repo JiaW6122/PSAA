@@ -1,1 +1,2 @@
-# PSAA
+# PSAA: A physics informed neural network approach to quantify antigen presentation activities at single cell level using omics data
+**PSAA** is an R package that offers a detailed, stepwise quantification of MHC pathway activity, enabling predictions of gene-specific impacts and their downstream effects on immune interactions. **PSAA** works with diverse omics data types, such as bulk data, single cell RNA-seq data, spatial transcriptomic data and proteomics data.
