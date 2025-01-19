@@ -3,6 +3,8 @@
 #' @param pathway Select a pathway you want to used to predict the anitgen presentation levels. Choosing from "mhc1","mhc2" or "self_define"
 #' @param protein Whether to used proteomics data
 #' @param sample_name The name of your input data
+#' @return seurat object with predicted antigen presentation levels saved in metadata
+#' @export
 psaa<-function(seurat_object,
                pathway,
                sample_name,
@@ -74,6 +76,8 @@ psaa<-function(seurat_object,
 #' @param seurat_object the input seurat object
 #' @param pathway Select a pathway you want to used to predict the anitgen presentation levels. Choosing from "mhc1","mhc2" or "self_define"
 #' @param mode The type of antigen presentation levels you want to plot. Choosing from "all", "avg" ,"pre" ,M_1" ,"M_2"..."M_8"
+#' @return NULL
+#' @export
 plot_levels<-function(seurat_object,
                       pathway,
                       mode){
