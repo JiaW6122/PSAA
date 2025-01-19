@@ -30,6 +30,7 @@ psaa<-function(seurat_object,
   file.copy(from = csv_files, to = paste0(current_path,'/scFEA/data/'), overwrite = TRUE)
 
   filename=c()
+  use_condaenv("scfea", required = TRUE)
   if(pathway=="mhc1"){
     system(paste0("python3 scFEA/src/scFEA.py --input_dir data --res_dir output --test_file ",sample_name,".csv --moduleGene_file mhc1_module_genes.csv --stoichiometry_matrix mhc1_cmMat.csv --cName_file mhc1_cName.csv"))
   }
