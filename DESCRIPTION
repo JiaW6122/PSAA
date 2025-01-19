@@ -14,3 +14,5 @@ Remotes:
     JiaW6122/PSAA
     changwn/scFEA
     ptdang1001/scFEA
+Imports:
+    reticulate
