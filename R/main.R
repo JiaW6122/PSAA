@@ -14,7 +14,16 @@ psaa<-function(seurat_object,
 {
   expression_matrix <- GetAssayData(seurat_object, slot = "data")
   current_path <- getwd()
-  write.csv(expression_matrix,paste0(current_path,'scFEA/data/',paste0(sample_name,'.csv')))
+  # Check if the folder 'scFEA' exists under the current path
+  scFEA_path <- file.path(current_path, "scFEA")
+  if (file.exists(scFEA_path) && file.info(scFEA_path)$isdir) {
+    message("The 'scFEA' folder exists.")
+  } else {
+    message("The 'scFEA' folder does not exist. Downloading scFEA...")
+  }
+  system("git clone https://github.com/changwn/scFEA")
+
+  write.csv(expression_matrix,paste0(current_path,'/scFEA/data/',paste0(sample_name,'.csv')))
   filename=c()
   if(pathway=="mhc1"){
     system("cd scFEA")
