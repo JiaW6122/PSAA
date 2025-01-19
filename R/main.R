@@ -12,9 +12,9 @@ psaa<-function(seurat_object,
                seed=123
                )
 {
-  normalized_matrix <- GetAssayData(seurat_object, slot = "data")
+  expression_matrix <- GetAssayData(seurat_object, slot = "data")
   current_path <- getwd()
-  write.csv(counts,paste0(current_path,'scFEA/data/',paste0(sample_name,'.csv')))
+  write.csv(expression_matrix,paste0(current_path,'scFEA/data/',paste0(sample_name,'.csv')))
   filename=c()
   if(pathway=="mhc1"){
     system("cd scFEA")
