@@ -20,10 +20,15 @@ psaa<-function(seurat_object,
     message("The 'scFEA' folder exists.")
   } else {
     message("The 'scFEA' folder does not exist. Downloading scFEA...")
+    system("git clone https://github.com/changwn/scFEA")
   }
-  system("git clone https://github.com/changwn/scFEA")
-
+  # prepare data
   write.csv(expression_matrix,paste0(current_path,'/scFEA/data/',paste0(sample_name,'.csv')))
+  # prepare pathway
+  pathway_folder <- system.file("pathway", package = "PSAA")
+  csv_files <- list.files(pathway_folder, pattern = "\\.csv$", full.names = TRUE)
+  file.copy(from = csv_files, to = paste0(current_path,'/scFEA/data/'), overwrite = TRUE)
+
   filename=c()
   if(pathway=="mhc1"){
     system("cd scFEA")
