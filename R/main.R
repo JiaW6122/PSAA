@@ -41,13 +41,73 @@ psaa<-function(seurat_object,
   for (i in 1:length(M)) {
     seurat_object<-addfeature(M[i])
   }
+  ##antigen mean
+  antigen_mean<-c()
+  if(pathway=="mhc1"){
+    antigen_mean<-(output[['M_1']]+output[['M_2']]+output[['M_3']]+output[['M_4']]+output[['M_5']]+output[['M_6']]+output[['M_7']]+output[['M_8']])/8
+  }
+  if(pathway=="mhc2"){
+    antigen_mean<-(output[['M_1']]+output[['M_2']]+output[['M_3']]+output[['M_4']]+output[['M_5']]+output[['M_6']]+output[['M_7']])/7
+  }
+  seurat_object<-AddMetaData(
+    object = seurat_object,
+    metadata = antigen_mean,
+    col.name = "ant_mean"
+  )
+  ##antigen presentated
+  antigen_pre<-c()
+  if(pathway=="mhc1"){
+    antigen_mean<-(output[['M_5']]+output[['M_6']]+output[['M_7']])/3
+  }
+  if(pathway=="mhc2"){
+    antigen_mean<-(output[['M_6']]+output[['M_7']])/2
+  }
+  seurat_object<-AddMetaData(
+    object = seurat_object,
+    metadata = antigen_pre,
+    col.name = "ant_pre"
+  )
   return(seurat_object)
 
 }
 #' Plot the predicted antigen presentation levels for spatial transcriptomics data
 #' @param seurat_object the input seurat object
-#' @param mode The type of antigen presentation levels you want to plot. Choosing from "all", "avg" ,""
+#' @param pathway Select a pathway you want to used to predict the anitgen presentation levels. Choosing from "mhc1","mhc2" or "self_define"
+#' @param mode The type of antigen presentation levels you want to plot. Choosing from "all", "avg" ,"pre" ,M_1" ,"M_2"..."M_8"
 plot_levels<-function(seurat_object,
-                      mode)
+                      pathway,
+                      mode){
+  # Plot and save image(M)
+  draw2<-function(g){
+    s<-SpatialFeaturePlot(seurat_object, features = g)
+    print(s)
+    # plot(1)
+    #dev.copy(jpeg,filename=paste0("plot", g, '.jpg'))
+    png(paste0("plot/", g, '.png'))
+    print(s)
+    dev.off()
+  }
+
+  M<-c()
+  if(pathway=="mhc1"){
+    M<-c('M_1','M_2','M_3','M_4','M_5','M_6','M_7','M_8')
+  }
+  if(pathway=="mhc2"){
+    M<-c('M_1','M_2','M_3','M_4','M_5','M_6','M_7')
+  }
+  if(mode=="all"){
+    sapply(M, draw2)
+  }
+  if(mode=="avg"){
+    draw2("ant_mean")
+  }
+  if(mode=="pre"){
+    draw2("ant_pre")
+  }
+  else{
+    draw2(mode)
+  }
+
+}
 
 
