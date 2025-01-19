@@ -12,7 +12,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Remotes: 
     JiaW6122/PSAA
-    changwn/scFEA
-    ptdang1001/scFEA
 Imports:
     reticulate
