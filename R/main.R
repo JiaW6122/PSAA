@@ -7,7 +7,7 @@ psaa<-function(seurat_object,
                pathway,
                sample_name,
                protein=FALSE,
-               seed=123,
+               seed=123
                )
 {
   normalized_matrix <- GetAssayData(seurat_object, slot = "data")
