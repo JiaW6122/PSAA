@@ -88,3 +88,7 @@ You can also visualize the average antigen presentation levels through the whole
 ### Spatial segmentation upon varied dependency between predicted antigen presentation and T cell infiltration
 
 To evaluate the spatial dependency between predicted antigen presentation and T cell infiltrations and identify the spatial regions show varied dependencies, PSAA computes local bivariate Moran’s I correlation and segment the regions of significant dependencies into four regions – “High antigen, High T cell”, “High antigen, Low T cell”, “Low antigen, High T cell” and “Low antigen, Low T cell”. 
+
+```R
+PSAA::spatial_seg(data, pathway = "mhc1", sample_name = "GSE206552_meta1")
+```
