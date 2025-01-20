@@ -51,7 +51,7 @@ py_config()  # Verify the environment and Python path
 ## Spatial transcriptomics data
 
 
-Download the sample data from: https://drive.google.com/file/d/1fKSEY8GlX2w2bRqMCO_XIe7lWQ76kusO/view?usp=share_link
+Download the example data from: https://drive.google.com/file/d/1fKSEY8GlX2w2bRqMCO_XIe7lWQ76kusO/view?usp=share_link
 
 Load demo dataset:
 ```R
@@ -61,12 +61,21 @@ data <- readRDS("your_path/GSE206552_meta1.rds")
 Run PSAA to predict sample-wise antigen presentation levels through MHC calss I antigen presentation pathway:
 ```R
 library(PSAA)
-data <- PSAA::psaa(data, "mhc1", "GSE206552_meta1")
+data <- PSAA::psaa(data, pathway = "mhc1", sample_name = "GSE206552_meta1")
 ```
+If you want to predict sample-wise antigen presentation levels through MHC calss II antigen presentation pathway, use parameter `pathway = "mhc2"`.
+
+
 
 Visualize the predicted antigen presentation levels in spatial transcriptomics data:
 ```R
-PSAA::plot_levels(data, "mhc1", "pre")
+PSAA::plot_levels(data, pathway = "mhc1", sample_name = "GSE206552_meta1", mode = "pre")
 ```
 ![Figure 1](figures/ant_pre.png "Example Figure 1")
 
+You can also visualize the average antigen presentation levels through the whole pathway, using parameter `mode = "avg"`. Or visualize the average antigen presentation levels of a sepcific module ("M_7") in the selected antigen presentation pathway, using parameter `mode = "M_7"`
+
+<p align="center">
+  <img src="figures/ant_mean.png" alt="Example Figure 2" width="300"/>
+  <img src="figures/M_7.png" alt="Example Figure 3" width="300"/>
+</p>

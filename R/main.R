@@ -143,7 +143,7 @@ plot_levels<-function(seurat_object,
     print(s)
     # plot(1)
     #dev.copy(jpeg,filename=paste0("plot", g, '.jpg'))
-    png(paste0("plot/", g, '.png'))
+    png(paste0("plot/", sample_name,"_", g, '.png'))
     print(s)
     dev.off()
   }
