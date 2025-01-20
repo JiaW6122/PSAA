@@ -11,19 +11,24 @@ Install **PSAA** from GitHub:
 library(remotes)
 remotes::install_github("JiaW6122/PSAA")
 ```
-
-Set up the environment
+Set up the environment:
 ```R
 library(Seurat)
 library(ggplot2)
 library(patchwork)
 library(dplyr)
 library(reticulate)
-``` 
+```
+
+Make sure to install all the requirements of [scFEA](https://github.com/changwn/scFEA). In R, you can Use Conda to create a Python environment for scFEA: 
 ```R
+# Install Miniconda if not already installed
+install_miniconda()
 # Create a Conda environment
 conda_create("scFEA_env")
-
+```
+Install Python Dependencies:
+```R
 # Install PyTorch
 conda_install("scFEA_env", packages = c("pytorch", "torchvision", "torchaudio"), channel = "pytorch")
 
@@ -31,15 +36,17 @@ conda_install("scFEA_env", packages = c("pytorch", "torchvision", "torchaudio"),
 conda_install("scFEA_env", packages = "pip")
 py_install("magic-impute", envname = "scFEA_env")
 conda_install("scFEA_env", packages = c("numpy",  "matplotlib"))
-conda_install(envname = "scFEA_env", packages = "pandas")
+conda_install(envname = "scFEA_env", packages = "pandas=1.3.5")
 ```
-
+Specify the Python Environment in R:
 ```R
 use_condaenv("scFEA_env", required = TRUE)
 py_config()  # Verify the environment and Python path
 ```
 
 # Tutorials 
+
+**PSAA** can take the input of diverse omics data types, such as bulk data, single cell RNA-seq data, spatial transcriptomic data and proteomics data. The following demos illustrate the main functionalities of the PSAA package for antigen presentation prediction and further analysis. We show some examples on public data, but you should be able to adapt them to your own datasets.
 
 ## Spatial transcriptomics data
 
@@ -61,4 +68,5 @@ Visualize the predicted antigen presentation levels in spatial transcriptomics d
 ```R
 PSAA::plot_levels(data, "mhc1", "pre")
 ```
+![Figure 1](figures/ant_pre.png "Example Figure 1")
 
