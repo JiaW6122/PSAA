@@ -29,15 +29,56 @@ psaa<-function(seurat_object,
   csv_files <- list.files(pathway_folder, pattern = "\\.csv$", full.names = TRUE)
   file.copy(from = csv_files, to = paste0(current_path,'/scFEA/data/'), overwrite = TRUE)
 
+
+  # run scfea
+  setwd("scFEA")
   filename=c()
   if(pathway=="mhc1"){
-    system(paste0("python3 scFEA/src/scFEA.py --input_dir scFEA/data --res_dir scFEA/output --test_file ",sample_name,".csv --moduleGene_file mhc1_module_genes.csv --stoichiometry_matrix mhc1_cmMat.csv --cName_file mhc1_cName.csv"))
+    system(paste0("python3 src/scFEA.py --input_dir data --res_dir output --test_file ",sample_name,".csv --moduleGene_file mhc1_module_genes.csv --stoichiometry_matrix mhc1_cmMat.csv --cName_file mhc1_cName.csv"))
   }
   if(pathway=="mhc2"){
     system("cd scFEA")
-    system(paste0("python3 scFEA/src/scFEA.py --input_dir scFEA/data --res_dir scFEA/output --test_file ",sample_name,".csv --moduleGene_file mhc2_module_genes.csv --stoichiometry_matrix mhc2_cmMat.csv --cName_file mhc2_cName.csv"))
+    system(paste0("python3 src/scFEA.py --input_dir data --res_dir output --test_file ",sample_name,".csv --moduleGene_file mhc2_module_genes.csv --stoichiometry_matrix mhc2_cmMat.csv --cName_file mhc2_cName.csv"))
   }
-  output<-read.csv(paste0("scFEA/output/",filename,".csv"))
+
+  # read the result
+  # Define the folder path
+  output_folder <- "output"  # Replace with the actual path to your output folder
+
+  # List all .csv files starting with sample_name
+  csv_files <- list.files(
+    path = output_folder,
+    pattern = paste0("^",sample_name,".*\\.csv$"),
+    full.names = TRUE
+  )
+
+  # Extract the timestamp from each file name
+  timestamps <- sapply(basename(csv_files), function(file) {
+    # Extract the timestamp using a regex
+    match <- regmatches(file, regexpr("[0-9]{8}-[0-9]{6}", file))
+    if (length(match) > 0) {
+      return(match)  # Return the timestamp if found
+    } else {
+      return(NA)  # Return NA if no timestamp is found
+    }
+  })
+
+  # Filter out files without timestamps
+  valid_files <- !is.na(timestamps)
+  csv_files <- csv_files[valid_files]
+  timestamps <- timestamps[valid_files]
+
+  # Convert timestamps to a datetime object for sorting
+  timestamps <- as.POSIXct(timestamps, format = "%Y%m%d-%H%M%S")
+
+  # Find the index of the newest file
+  newest_index <- which.max(timestamps)
+
+  # Get the newest file
+  newest_file <- csv_files[newest_index]
+
+
+  output<-read.csv(newest_file)
   M<-c()
   if(pathway=="mhc1"){
     M<-c('M_1','M_2','M_3','M_4','M_5','M_6','M_7','M_8')

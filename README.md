@@ -36,6 +36,7 @@ conda_install(envname = "scFEA_env", packages = "pandas")
 
 ```R
 use_condaenv("scFEA_env", required = TRUE)
+py_config()  # Verify the environment and Python path
 ```
 
 # Tutorials 
@@ -48,6 +49,7 @@ Download the human breast cancer data from: https://drive.google.com/file/d/1032
 Load demo dataset:
 ```R
 HumanbreastV1 <- readRDS("your_path/HumanbreastV1.rds")
+# HumanbreastV1 <- SCTransform(HumanbreastV1, assay = "Spatial", verbose = FALSE)
 ```
 
 Run PSAA to predict sample-wise antigen presentation levels through MHC calss I antigen presentation pathway:
