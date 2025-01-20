@@ -189,6 +189,8 @@ plot_levels<-function(seurat_object,
 #' @param k the number of neighbors we want to use
 #' @param alpha the threshold of weight
 #' @param sigma parameter of Gaussian kernel weight matrix
+#' @return NULL
+#' @export
 spatial_seg<-function(seurat_object,
                       pathway,
                       sample_name,
