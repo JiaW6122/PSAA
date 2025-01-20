@@ -129,11 +129,13 @@ psaa<-function(seurat_object,
 #' Plot the predicted antigen presentation levels for spatial transcriptomics data
 #' @param seurat_object the input seurat object
 #' @param pathway Select a pathway you want to used to predict the anitgen presentation levels. Choosing from "mhc1","mhc2" or "self_define"
+#' @param sample_name The name of your input data
 #' @param mode The type of antigen presentation levels you want to plot. Choosing from "all", "avg" ,"pre" ,M_1" ,"M_2"..."M_8"
 #' @return NULL
 #' @export
 plot_levels<-function(seurat_object,
                       pathway,
+                      sample_name,
                       mode){
   # Plot and save image(M)
   draw2<-function(g){
@@ -145,6 +147,15 @@ plot_levels<-function(seurat_object,
     print(s)
     dev.off()
   }
+
+  # Check if the "plot" folder exists
+  setwd("..")
+  if (!dir.exists("plot")) {
+    # Create the folder if it doesn't exist
+    dir.create("plot")
+    message("The 'plot' folder has been created.")
+  }
+
 
   M<-c()
   if(pathway=="mhc1"){
