@@ -113,10 +113,10 @@ psaa<-function(seurat_object,
   ##antigen presentated
   antigen_pre<-c()
   if(pathway=="mhc1"){
-    antigen_mean<-(output[['M_5']]+output[['M_6']]+output[['M_7']])/3
+    antigen_pre<-(output[['M_5']]+output[['M_6']]+output[['M_7']])/3
   }
   if(pathway=="mhc2"){
-    antigen_mean<-(output[['M_6']]+output[['M_7']])/2
+    antigen_pre<-(output[['M_6']]+output[['M_7']])/2
   }
   seurat_object<-AddMetaData(
     object = seurat_object,
