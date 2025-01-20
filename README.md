@@ -71,11 +71,11 @@ Visualize the predicted antigen presentation levels in spatial transcriptomics d
 ```R
 PSAA::plot_levels(data, pathway = "mhc1", sample_name = "GSE206552_meta1", mode = "pre")
 ```
-![Figure 1](figures/ant_pre.png "Example Figure 1")
 
 You can also visualize the average antigen presentation levels through the whole pathway, using parameter `mode = "avg"`. Or visualize the average antigen presentation levels of a sepcific module ("M_7") in the selected antigen presentation pathway, using parameter `mode = "M_7"`
 
 <p align="center">
+  <img src="figures/ant_pre.png" alt="Example Figure 1" width="300"/>
   <img src="figures/ant_mean.png" alt="Example Figure 2" width="300"/>
   <img src="figures/M_7.png" alt="Example Figure 3" width="300"/>
 </p>
