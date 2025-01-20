@@ -20,6 +20,7 @@ library(Seurat)
 library(ggplot2)
 library(patchwork)
 library(dplyr)
+library(reticulate)
 ``` 
 
 Download the human breast cancer data from: https://drive.google.com/file/d/1032ck3O4G72SnVSlEuuxt-m4vJIsOKgk/view?usp=share_link
