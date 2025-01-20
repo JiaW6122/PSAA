@@ -20,6 +20,19 @@ library(patchwork)
 library(dplyr)
 library(reticulate)
 ``` 
+```R
+# Create a Conda environment
+conda_create("scFEA_env")
+
+# Install PyTorch
+conda_install("scFEA_env", packages = c("pytorch", "torchvision", "torchaudio"), channel = "pytorch")
+
+# Install magic-impute
+conda_install("scFEA_env", packages = "pip")
+py_install("magic-impute", envname = "scFEA_env")
+conda_install("scFEA_env", packages = c("numpy",  "matplotlib"))
+conda_install(envname = "scFEA_env", packages = "pandas")
+```
 
 ```R
 use_condaenv("scFEA_env", required = TRUE)
