@@ -16,8 +16,11 @@ Set up the environment:
 library(Seurat)
 library(ggplot2)
 library(patchwork)
+library(magrittr)
+library(stringr)
 library(dplyr)
 library(reticulate)
+library(philentropy)
 ```
 
 Make sure to install all the requirements of [scFEA](https://github.com/changwn/scFEA). In R, you can Use Conda to create a Python environment for scFEA: 
@@ -58,7 +61,9 @@ Load demo dataset:
 data <- readRDS("your_path/GSE206552_meta1.rds")
 ```
 
-Run PSAA to predict sample-wise antigen presentation levels through MHC calss I antigen presentation pathway:
+### Run PSAA to predict sample-wise antigen presentation levels 
+
+Here we show how to use PSAA to predict MHC calss I antigen presentation levels:
 ```R
 library(PSAA)
 data <- PSAA::psaa(data, pathway = "mhc1", sample_name = "GSE206552_meta1")
@@ -79,3 +84,7 @@ You can also visualize the average antigen presentation levels through the whole
   <img src="figures/ant_mean.png" alt="Example Figure 2" width="300"/>
   <img src="figures/M_7.png" alt="Example Figure 3" width="300"/>
 </p>
+
+### Spatial segmentation upon varied dependency between predicted antigen presentation and T cell infiltration
+
+To evaluate the spatial dependency between predicted antigen presentation and T cell infiltrations and identify the spatial regions show varied dependencies, PSAA computes local bivariate Moran’s I correlation and segment the regions of significant dependencies into four regions – “High antigen, High T cell”, “High antigen, Low T cell”, “Low antigen, High T cell” and “Low antigen, Low T cell”. 
