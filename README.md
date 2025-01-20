@@ -44,22 +44,21 @@ py_config()  # Verify the environment and Python path
 ## Spatial transcriptomics data
 
 
-Download the human breast cancer data from: https://drive.google.com/file/d/1032ck3O4G72SnVSlEuuxt-m4vJIsOKgk/view?usp=share_link
+Download the sample data from: https://drive.google.com/file/d/1fKSEY8GlX2w2bRqMCO_XIe7lWQ76kusO/view?usp=share_link
 
 Load demo dataset:
 ```R
-HumanbreastV1 <- readRDS("your_path/HumanbreastV1.rds")
-# HumanbreastV1 <- SCTransform(HumanbreastV1, assay = "Spatial", verbose = FALSE)
+data <- readRDS("your_path/GSE206552_meta1.rds")
 ```
 
 Run PSAA to predict sample-wise antigen presentation levels through MHC calss I antigen presentation pathway:
 ```R
 library(PSAA)
-HumanbreastV1 <- PSAA::psaa(HumanbreastV1, "mhc1", "Humanbreast")
+data <- PSAA::psaa(data, "mhc1", "GSE206552_meta1")
 ```
 
 Visualize the predicted antigen presentation levels in spatial transcriptomics data:
 ```R
-PSAA::plot_levels(HumanbreastV1, "mhc1", "pre")
+PSAA::plot_levels(data, "mhc1", "pre")
 ```
 
