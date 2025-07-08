@@ -84,5 +84,5 @@ PSAA::spatial_seg(data, pathway = "mhc1", sample_name = "GSE206552_meta1")
 ```
 
 <p align="center">
-<img src="figures/spatial_seg.png" alt="Example Figure 4" width="300"/>
+<img src="figures/spatial_seg.png" alt="Example Figure 4" width="500"/>
 </p>
