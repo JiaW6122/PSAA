@@ -312,7 +312,8 @@ spatial_seg<-function(seurat_object,
   }
   # Adjacency Matrix
   W<- as(weight, "symmetricMatrix")
-  print(dim(W))
+  # print(dim(W))
+  W <- as.matrix(W)
   W<- as.matrix(W/rowSums(W))
 
   m <- moran_I(x, y, W)
