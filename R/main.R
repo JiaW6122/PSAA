@@ -167,15 +167,15 @@ plot_levels<-function(seurat_object,
   }
   if(mode=="all"){
     sapply(M, draw2)
-    break
+    # break
   }
-  if(mode=="avg"){
+  else if(mode=="avg"){
     draw2("ant_mean")
-    break
+    # break
   }
-  if(mode=="pre"){
+  else if(mode=="pre"){
     draw2("ant_pre")
-    break
+    # break
   }
   else{
     draw2(mode)
