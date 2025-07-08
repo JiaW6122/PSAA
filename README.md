@@ -82,3 +82,4 @@ To evaluate the spatial dependency between predicted antigen presentation and T 
 ```R
 PSAA::spatial_seg(data, pathway = "mhc1", sample_name = "GSE206552_meta1")
 ```
+<img src="figures/spatial_seg.png" alt="Example Figure 4" width="300"/>
