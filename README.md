@@ -23,7 +23,7 @@ library(reticulate)
 library(philentropy)
 ```
 
-Make sure to install all the requirements of [scFEA](https://github.com/changwn/scFEA). In R, you can Use Conda to create a Python environment for scFEA: 
+Make sure to install all the requirements of [scFEA](https://github.com/changwn/scFEA). 
 
 Create Conda Environment and Install Python Dependencies:
 ```
