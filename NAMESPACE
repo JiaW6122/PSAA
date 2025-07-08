@@ -2,3 +2,4 @@
 
 export(plot_levels)
 export(psaa)
+export(spatial_seg)
