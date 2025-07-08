@@ -24,26 +24,16 @@ library(philentropy)
 ```
 
 Make sure to install all the requirements of [scFEA](https://github.com/changwn/scFEA). In R, you can Use Conda to create a Python environment for scFEA: 
-```R
-# Install Miniconda if not already installed
-install_miniconda()
-# Create a Conda environment
-conda_create("scFEA_env")
-```
-Install Python Dependencies:
-```R
-# Install PyTorch
-conda_install("scFEA_env", packages = c("pytorch", "torchvision", "torchaudio"), channel = "pytorch")
 
-# Install magic-impute
-conda_install("scFEA_env", packages = "pip")
-py_install("magic-impute", envname = "scFEA_env")
-conda_install("scFEA_env", packages = c("numpy",  "matplotlib"))
-conda_install(envname = "scFEA_env", packages = "pandas=1.3.5")
+Create Conda Environment and Install Python Dependencies:
+```
+conda create -n myenv python=3.11
+conda activate myenv
+pip install magic-impute numpy==1.25.2 pandas==1.5 torch tqdm
 ```
 Specify the Python Environment in R:
 ```R
-use_condaenv("scFEA_env", required = TRUE)
+use_condaenv("myenv", conda = "~/opt/anaconda3/bin/conda", required = TRUE)
 py_config()  # Verify the environment and Python path
 ```
 

@@ -35,12 +35,11 @@ psaa<-function(seurat_object,
   filename=c()
   if(pathway=="mhc1"){
     # system(paste0("python3 src/scFEA.py --input_dir data --res_dir output --test_file ",sample_name,".csv --moduleGene_file mhc1_module_genes.csv --stoichiometry_matrix mhc1_cmMat.csv --cName_file mhc1_cName.csv"))
-    # use_condaenv("myenv", conda = "~/miniconda/bin/conda", required = TRUE)
-    system(paste0("conda run -n myenv python src/scFEA.py --input_dir data --res_dir output --test_file ",sample_name,".csv --moduleGene_file mhc1_module_genes.csv --stoichiometry_matrix mhc1_cmMat.csv --cName_file mhc1_cName.csv"))
+    system(paste0("python src/scFEA.py --input_dir data --res_dir output --test_file ",sample_name,".csv --moduleGene_file mhc1_module_genes.csv --stoichiometry_matrix mhc1_cmMat.csv --cName_file mhc1_cName.csv"))
   }
   if(pathway=="mhc2"){
     system("cd scFEA")
-    system(paste0("python3 src/scFEA.py --input_dir data --res_dir output --test_file ",sample_name,".csv --moduleGene_file mhc2_module_genes.csv --stoichiometry_matrix mhc2_cmMat.csv --cName_file mhc2_cName.csv"))
+    system(paste0("python src/scFEA.py --input_dir data --res_dir output --test_file ",sample_name,".csv --moduleGene_file mhc2_module_genes.csv --stoichiometry_matrix mhc2_cmMat.csv --cName_file mhc2_cName.csv"))
   }
 
   # read the result
