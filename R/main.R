@@ -259,7 +259,7 @@ spatial_seg<-function(seurat_object,
     metadata = tcell_amp[,1],
     col.name = "tcell_amp"
   )
-  antigen_pre<-FetchData(object = seurat_object, vars ="ant_pre")
+  antigen_pre<-FetchData(object = seurat_object, vars ="ant_pre")$ant_pre
   antigen_amp<-weight%*%array(antigen_pre,dim=c(length(tcell_level),1))
   seurat_object<-AddMetaData(
     object = seurat_object,
